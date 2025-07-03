@@ -9,7 +9,7 @@ const CompanyHistory = () => {
       title: 'Foundation by Ettore Bugatti',
       description: 'Italian-born French automobile designer Ettore Bugatti founded the company in Molsheim, Alsace, with his revolutionary vision of creating "art in motion"',
       icon: FaCalendarAlt,
-      image: 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+      image: 'https://images.pexels.com/photos/337909/pexels-photo-337909.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       color: 'from-amber-500 to-orange-600',
       achievement: 'Birth of a Legend'
     },
@@ -18,7 +18,7 @@ const CompanyHistory = () => {
       title: 'Racing Dominance Era',
       description: 'The legendary Type 35 became the most successful racing car in history, winning over 2,000 races and establishing Bugatti as the ultimate racing marque',
       icon: FaTrophy,
-      image: 'https://images.pexels.com/photos/3802508/pexels-photo-3802508.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+      image: 'https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       color: 'from-yellow-500 to-amber-600',
       achievement: '2,000+ Race Victories'
     },
@@ -27,7 +27,7 @@ const CompanyHistory = () => {
       title: 'Volkswagen Group Acquisition',
       description: 'Volkswagen Group acquired the Bugatti brand and began the ambitious project to create the world\'s fastest production car - the Veyron',
       icon: FaUsers,
-      image: 'https://images.pexels.com/photos/190574/pexels-photo-190574.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+      image: 'https://images.pexels.com/photos/136872/pexels-photo-136872.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       color: 'from-blue-500 to-indigo-600',
       achievement: 'Modern Renaissance'
     },
@@ -36,7 +36,7 @@ const CompanyHistory = () => {
       title: 'Hypercar Revolution',
       description: 'The Veyron shattered all performance records, followed by the Chiron which continues to redefine the limits of automotive engineering and luxury',
       icon: FaRocket,
-      image: 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+      image: 'https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       color: 'from-purple-500 to-pink-600',
       achievement: 'Speed Records Broken'
     }
@@ -143,7 +143,7 @@ const CompanyHistory = () => {
               className="relative"
             >
               <img 
-                src="https://images.pexels.com/photos/244206/pexels-photo-244206.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                src="https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
                 alt="Ettore Bugatti Legacy"
                 className="w-full h-96 object-cover rounded-2xl shadow-2xl"
               />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaPalette, FaCheck, FaCar, FaStar, FaMagic, FaDownload, FaShare } from 'react-icons/fa';
+import { FaPalette, FaCheck, FaCar, FaStar, FaMagic, FaShare } from 'react-icons/fa';
 
 const ColorCustomizer = () => {
   const [selectedColor, setSelectedColor] = useState('blue');
@@ -85,19 +85,16 @@ const ColorCustomizer = () => {
     { 
       id: 'chiron', 
       name: 'Chiron', 
-      baseImage: 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
       specs: { power: '1,479 HP', topSpeed: '261 mph', acceleration: '2.4s' }
     },
     { 
       id: 'chiron-sport', 
       name: 'Chiron Sport', 
-      baseImage: 'https://images.pexels.com/photos/3802508/pexels-photo-3802508.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
       specs: { power: '1,479 HP', topSpeed: '261 mph', acceleration: '2.3s' }
     },
     { 
       id: 'divo', 
       name: 'Divo', 
-      baseImage: 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
       specs: { power: '1,479 HP', topSpeed: '236 mph', acceleration: '2.4s' }
     }
   ];
@@ -105,18 +102,18 @@ const ColorCustomizer = () => {
   const selectedModelData = models.find(model => model.id === selectedModel);
   const selectedColorData = colors.find(color => color.id === selectedColor);
 
-  const generateCarSVG = () => {
+  const generateBugattiSVG = () => {
     const colors = selectedColorData?.carColors;
     return (
-      <svg viewBox="0 0 500 250" className="w-full h-full drop-shadow-2xl">
+      <svg viewBox="0 0 600 300" className="w-full h-full drop-shadow-2xl">
         <defs>
-          <linearGradient id="carBodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor={colors?.primary} />
             <stop offset="30%" stopColor={colors?.metallic} />
             <stop offset="70%" stopColor={colors?.secondary} />
             <stop offset="100%" stopColor={colors?.primary} />
           </linearGradient>
-          <linearGradient id="carAccentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor={colors?.accent} />
             <stop offset="50%" stopColor={colors?.metallic} />
             <stop offset="100%" stopColor={colors?.accent} />
@@ -127,105 +124,138 @@ const ColorCustomizer = () => {
             <stop offset="100%" stopColor="#1a202c" />
           </radialGradient>
           <filter id="carShadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="3" dy="8" stdDeviation="6" floodOpacity="0.4" floodColor="#000000"/>
+            <feDropShadow dx="4" dy="10" stdDeviation="8" floodOpacity="0.5" floodColor="#000000"/>
           </filter>
-          <filter id="metallic" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-            <feSpecularLighting result="specOut" in="blur" specularConstant="1.5" specularExponent="20" lightingColor="white">
-              <fePointLight x="-50" y="-50" z="200"/>
-            </feSpecularLighting>
-            <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
-            <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge> 
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
           </filter>
         </defs>
         
         {/* Car Shadow */}
-        <ellipse cx="250" cy="220" rx="180" ry="15" fill="rgba(0,0,0,0.3)" />
+        <ellipse cx="300" cy="270" rx="220" ry="20" fill="rgba(0,0,0,0.4)" />
         
-        {/* Main Car Body */}
+        {/* Main Bugatti Chiron Body - Distinctive Shape */}
         <path
-          d="M80 150 L120 100 L150 85 L350 85 L380 100 L420 150 L420 180 L380 190 L120 190 L80 180 Z"
-          fill="url(#carBodyGradient)"
+          d="M80 180 L100 140 L130 120 L160 110 L200 105 L400 105 L440 110 L470 120 L500 140 L520 180 L520 210 L500 220 L470 225 L130 225 L100 220 L80 210 Z"
+          fill="url(#bodyGradient)"
           filter="url(#carShadow)"
           stroke={colors?.accent}
+          strokeWidth="2"
+        />
+        
+        {/* Bugatti Signature C-Line */}
+        <path
+          d="M160 110 L180 100 L220 95 L380 95 L420 100 L440 110 L430 125 L420 140 L180 140 L170 125 Z"
+          fill="url(#bodyGradient)"
+          opacity="0.95"
+          stroke={colors?.metallic}
           strokeWidth="1"
         />
         
-        {/* Car Roof */}
+        {/* Distinctive Bugatti Windshield */}
         <path
-          d="M130 100 L150 90 L350 90 L370 100 L360 110 L140 110 Z"
-          fill="url(#carBodyGradient)"
-          opacity="0.9"
-        />
-        
-        {/* Windshield */}
-        <path
-          d="M140 100 L160 88 L340 88 L360 100 L350 105 L150 105 Z"
-          fill="rgba(200,220,255,0.4)"
+          d="M180 140 L200 98 L400 98 L420 140 L400 135 L200 135 Z"
+          fill="rgba(200,220,255,0.3)"
           stroke={colors?.accent}
-          strokeWidth="1"
+          strokeWidth="1.5"
         />
         
-        {/* Side Windows */}
+        {/* Side Air Intakes - Bugatti Signature */}
+        <ellipse cx="150" cy="160" rx="25" ry="15" fill={colors?.secondary} stroke={colors?.accent} strokeWidth="2"/>
+        <ellipse cx="150" cy="160" rx="18" ry="10" fill={colors?.primary}/>
+        <ellipse cx="450" cy="160" rx="25" ry="15" fill={colors?.secondary} stroke={colors?.accent} strokeWidth="2"/>
+        <ellipse cx="450" cy="160" rx="18" ry="10" fill={colors?.primary}/>
+        
+        {/* Bugatti Horseshoe Grille */}
         <path
-          d="M150 105 L170 95 L230 95 L240 105 Z"
-          fill="rgba(150,180,255,0.3)"
-          stroke={colors?.metallic}
-          strokeWidth="0.5"
+          d="M500 140 Q520 150 520 170 Q520 190 500 200 L480 195 Q490 175 490 155 Z"
+          fill={colors?.secondary}
+          stroke={colors?.accent}
+          strokeWidth="2"
         />
         <path
-          d="M260 105 L270 95 L330 95 L350 105 Z"
-          fill="rgba(150,180,255,0.3)"
+          d="M485 150 Q500 160 500 175 Q500 190 485 195"
+          fill="none"
           stroke={colors?.metallic}
-          strokeWidth="0.5"
+          strokeWidth="3"
         />
         
-        {/* Front Wheels */}
-        <circle cx="130" cy="175" r="25" fill="url(#wheelGradient)" stroke={colors?.accent} strokeWidth="2"/>
-        <circle cx="130" cy="175" r="18" fill={colors?.secondary} stroke={colors?.metallic} strokeWidth="1"/>
-        <circle cx="130" cy="175" r="10" fill={colors?.accent}/>
+        {/* Front Wheels - Bugatti Style */}
+        <circle cx="150" cy="210" r="30" fill="url(#wheelGradient)" stroke={colors?.accent} strokeWidth="3"/>
+        <circle cx="150" cy="210" r="22" fill={colors?.secondary} stroke={colors?.metallic} strokeWidth="2"/>
+        <circle cx="150" cy="210" r="12" fill={colors?.accent}/>
+        {/* Wheel Spokes */}
+        <g stroke={colors?.metallic} strokeWidth="2">
+          <line x1="138" y1="210" x2="162" y2="210"/>
+          <line x1="150" y1="198" x2="150" y2="222"/>
+          <line x1="141" y1="199" x2="159" y2="221"/>
+          <line x1="159" y1="199" x2="141" y2="221"/>
+        </g>
         
         {/* Rear Wheels */}
-        <circle cx="370" cy="175" r="25" fill="url(#wheelGradient)" stroke={colors?.accent} strokeWidth="2"/>
-        <circle cx="370" cy="175" r="18" fill={colors?.secondary} stroke={colors?.metallic} strokeWidth="1"/>
-        <circle cx="370" cy="175" r="10" fill={colors?.accent}/>
+        <circle cx="450" cy="210" r="30" fill="url(#wheelGradient)" stroke={colors?.accent} strokeWidth="3"/>
+        <circle cx="450" cy="210" r="22" fill={colors?.secondary} stroke={colors?.metallic} strokeWidth="2"/>
+        <circle cx="450" cy="210" r="12" fill={colors?.accent}/>
+        {/* Wheel Spokes */}
+        <g stroke={colors?.metallic} strokeWidth="2">
+          <line x1="438" y1="210" x2="462" y2="210"/>
+          <line x1="450" y1="198" x2="450" y2="222"/>
+          <line x1="441" y1="199" x2="459" y2="221"/>
+          <line x1="459" y1="199" x2="441" y2="221"/>
+        </g>
         
-        {/* Headlights */}
-        <ellipse cx="410" cy="130" rx="12" ry="18" fill="#ffffff" opacity="0.9"/>
-        <ellipse cx="410" cy="130" rx="8" ry="14" fill={colors?.accent} opacity="0.8"/>
-        <ellipse cx="410" cy="125" rx="4" ry="6" fill="#ffffff"/>
+        {/* Distinctive Bugatti Headlights */}
+        <ellipse cx="510" cy="155" rx="15" ry="20" fill="#ffffff" opacity="0.95" filter="url(#glow)"/>
+        <ellipse cx="510" cy="155" rx="10" ry="15" fill={colors?.accent} opacity="0.8"/>
+        <ellipse cx="510" cy="150" rx="5" ry="8" fill="#ffffff"/>
+        
+        {/* LED DRL */}
+        <rect x="505" y="140" width="10" height="2" fill="#ffffff" opacity="0.9"/>
+        <rect x="505" y="175" width="10" height="2" fill="#ffffff" opacity="0.9"/>
         
         {/* Taillights */}
-        <ellipse cx="90" cy="140" rx="8" ry="12" fill="#ff4444" opacity="0.9"/>
-        <ellipse cx="90" cy="155" rx="8" ry="12" fill="#ff4444" opacity="0.9"/>
+        <ellipse cx="90" cy="155" rx="10" ry="15" fill="#ff3333" opacity="0.9"/>
+        <ellipse cx="90" cy="175" rx="10" ry="15" fill="#ff3333" opacity="0.9"/>
         
-        {/* Side Accent Lines */}
+        {/* Bugatti Side Character Lines */}
         <path
-          d="M120 140 L380 140"
-          stroke="url(#carAccentGradient)"
-          strokeWidth="3"
+          d="M130 160 L470 160"
+          stroke="url(#accentGradient)"
+          strokeWidth="4"
           opacity="0.8"
         />
         <path
-          d="M130 155 L370 155"
-          stroke="url(#carAccentGradient)"
-          strokeWidth="2"
+          d="M140 180 L460 180"
+          stroke="url(#accentGradient)"
+          strokeWidth="3"
           opacity="0.6"
         />
         
         {/* Door Lines */}
-        <line x1="200" y1="100" x2="200" y2="175" stroke={colors?.secondary} strokeWidth="1" opacity="0.4"/>
-        <line x1="300" y1="100" x2="300" y2="175" stroke={colors?.secondary} strokeWidth="1" opacity="0.4"/>
+        <line x1="220" y1="110" x2="220" y2="200" stroke={colors?.secondary} strokeWidth="1.5" opacity="0.5"/>
+        <line x1="380" y1="110" x2="380" y2="200" stroke={colors?.secondary} strokeWidth="1.5" opacity="0.5"/>
         
-        {/* Front Grille */}
-        <rect x="400" y="120" width="15" height="30" fill={colors?.secondary} rx="2"/>
-        <rect x="402" y="125" width="11" height="5" fill={colors?.accent} opacity="0.7"/>
-        <rect x="402" y="135" width="11" height="5" fill={colors?.accent} opacity="0.7"/>
-        <rect x="402" y="145" width="11" height="5" fill={colors?.accent} opacity="0.7"/>
+        {/* Rear Spoiler */}
+        <rect x="70" y="145" width="20" height="8" fill={colors?.primary} stroke={colors?.accent} strokeWidth="1"/>
+        <rect x="72" y="147" width="16" height="4" fill={colors?.accent} opacity="0.7"/>
         
-        {/* Bugatti Logo Area */}
-        <circle cx="410" cy="135" r="6" fill={colors?.accent} stroke="#ffffff" strokeWidth="1"/>
-        <text x="410" y="138" textAnchor="middle" fontSize="6" fill="#ffffff" fontWeight="bold">B</text>
+        {/* Bugatti EB Logo */}
+        <circle cx="300" cy="120" r="12" fill={colors?.accent} stroke="#ffffff" strokeWidth="2"/>
+        <text x="300" y="125" textAnchor="middle" fontSize="10" fill="#ffffff" fontWeight="bold">EB</text>
+        
+        {/* Side Mirrors */}
+        <ellipse cx="180" cy="130" rx="8" ry="5" fill={colors?.secondary} stroke={colors?.accent} strokeWidth="1"/>
+        <ellipse cx="420" cy="130" rx="8" ry="5" fill={colors?.secondary} stroke={colors?.accent} strokeWidth="1"/>
+        
+        {/* Exhaust Pipes */}
+        <circle cx="85" cy="195" r="6" fill={colors?.secondary} stroke={colors?.metallic} strokeWidth="2"/>
+        <circle cx="85" cy="210" r="6" fill={colors?.secondary} stroke={colors?.metallic} strokeWidth="2"/>
+        <circle cx="95" cy="195" r="6" fill={colors?.secondary} stroke={colors?.metallic} strokeWidth="2"/>
+        <circle cx="95" cy="210" r="6" fill={colors?.secondary} stroke={colors?.metallic} strokeWidth="2"/>
       </svg>
     );
   };
@@ -284,7 +314,7 @@ const ColorCustomizer = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Enhanced Car Display with Real-time Color Change */}
+          {/* Enhanced Bugatti Display with Real-time Color Change */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -307,7 +337,7 @@ const ColorCustomizer = () => {
                 }}
               />
 
-              {/* Car Visualization - Much Larger */}
+              {/* Bugatti Car Visualization - Large and Detailed */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`${selectedModel}-${selectedColor}`}
@@ -317,9 +347,9 @@ const ColorCustomizer = () => {
                   exit={{ scale: 0.8, opacity: 0, rotateY: -90 }}
                   transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
                 >
-                  {/* Large SVG Car with Dynamic Colors */}
+                  {/* Large Detailed Bugatti SVG */}
                   <motion.div
-                    className="w-full h-full max-w-lg max-h-80 p-4"
+                    className="w-full h-full max-w-2xl max-h-80 p-4"
                     animate={{
                       scale: [1, 1.02, 1],
                       rotateY: [0, 2, 0]
@@ -330,11 +360,11 @@ const ColorCustomizer = () => {
                       ease: "easeInOut"
                     }}
                   >
-                    {generateCarSVG()}
+                    {generateBugattiSVG()}
                   </motion.div>
                   
                   {/* Enhanced Sparkle Effect */}
-                  {Array.from({ length: 12 }).map((_, i) => (
+                  {Array.from({ length: 15 }).map((_, i) => (
                     <motion.div
                       key={i}
                       className="absolute w-3 h-3 bg-white rounded-full"
@@ -350,7 +380,7 @@ const ColorCustomizer = () => {
                       transition={{
                         duration: 3,
                         repeat: Infinity,
-                        delay: i * 0.25,
+                        delay: i * 0.2,
                         ease: "easeInOut"
                       }}
                     />
@@ -381,7 +411,7 @@ const ColorCustomizer = () => {
                     <div>
                       <h4 className="text-white font-bold text-xl mb-2 flex items-center">
                         <FaStar className="mr-2 text-yellow-400" />
-                        {selectedModelData?.name}
+                        Bugatti {selectedModelData?.name}
                       </h4>
                       <p className="text-gray-300 font-medium">{selectedColorData?.name}</p>
                     </div>
@@ -461,7 +491,7 @@ const ColorCustomizer = () => {
                   >
                     <div className="flex items-center justify-between">
                       <div className="text-left">
-                        <span className="text-white font-medium block">{model.name}</span>
+                        <span className="text-white font-medium block">Bugatti {model.name}</span>
                         <span className="text-gray-400 text-sm">{model.specs.power}</span>
                       </div>
                       <AnimatePresence>

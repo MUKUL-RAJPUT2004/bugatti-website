@@ -22,11 +22,11 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="relative h-screen overflow-hidden">
-      {/* Hero Background with High Quality Bugatti Image */}
+      {/* Hero Background with Stunning Bugatti Side View */}
       <div className="absolute inset-0">
         <img 
-          src="https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-          alt="Bugatti Chiron"
+          src="https://images.pexels.com/photos/337909/pexels-photo-337909.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+          alt="Bugatti Chiron Side View"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
