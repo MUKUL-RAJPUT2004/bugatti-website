@@ -18,7 +18,7 @@ export const carModels: CarModel[] = [
     price: '$3.26M',
     acceleration: '2.4s',
     description: 'The ultimate expression of automotive excellence, combining unmatched performance with luxurious craftsmanship.',
-    image: 'https://images.pexels.com/photos/1719648/pexels-photo-1719648.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
+    image: 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   },
   {
     id: 'chiron-sport',
@@ -28,7 +28,7 @@ export const carModels: CarModel[] = [
     price: '$3.65M',
     acceleration: '2.3s',
     description: 'Enhanced agility and precision for the most demanding driving experiences.',
-    image: 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
+    image: 'https://images.pexels.com/photos/3802508/pexels-photo-3802508.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   },
   {
     id: 'chiron-super-sport',
@@ -38,7 +38,7 @@ export const carModels: CarModel[] = [
     price: '$3.9M',
     acceleration: '2.4s',
     description: 'The fastest production Bugatti ever created, pushing the boundaries of speed.',
-    image: 'https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
+    image: 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   },
   {
     id: 'la-voiture-noire',
@@ -48,7 +48,7 @@ export const carModels: CarModel[] = [
     price: '$18.7M',
     acceleration: '2.4s',
     description: 'The most exclusive hypercar ever created, a unique tribute to Bugatti heritage.',
-    image: 'https://images.pexels.com/photos/1805053/pexels-photo-1805053.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
+    image: 'https://images.pexels.com/photos/190574/pexels-photo-190574.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   },
   {
     id: 'divo',
@@ -58,7 +58,7 @@ export const carModels: CarModel[] = [
     price: '$5.8M',
     acceleration: '2.4s',
     description: 'Track-focused aerodynamic masterpiece designed for ultimate cornering performance.',
-    image: 'https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
+    image: 'https://images.pexels.com/photos/159293/car-engine-motor-clean-159293.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   },
   {
     id: 'bolide',
@@ -68,6 +68,6 @@ export const carModels: CarModel[] = [
     price: '$4.7M',
     acceleration: '2.17s',
     description: 'The ultimate track weapon, showcasing Bugatti engineering at its most extreme.',
-    image: 'https://images.pexels.com/photos/1638459/pexels-photo-1638459.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
+    image: 'https://images.pexels.com/photos/244206/pexels-photo-244206.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   }
 ];

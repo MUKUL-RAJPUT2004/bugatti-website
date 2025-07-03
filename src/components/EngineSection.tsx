@@ -10,7 +10,7 @@ const EngineSection = () => {
       torque: '1,180 lb-ft',
       displacement: '8.0L',
       description: 'The legendary W16 engine that powers the Chiron series, featuring four turbochargers and unmatched refinement.',
-      image: 'https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+      image: 'https://images.pexels.com/photos/159293/car-engine-motor-clean-159293.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
       features: ['Quad-Turbo System', '16 Cylinders', 'Carbon Fiber Components', 'Advanced Cooling'],
       gradient: 'from-blue-600 to-purple-600'
     },
@@ -20,7 +20,7 @@ const EngineSection = () => {
       torque: '922 lb-ft',
       displacement: '8.0L',
       description: 'The groundbreaking engine that started the hypercar revolution, setting new standards for power and performance.',
-      image: 'https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+      image: 'https://images.pexels.com/photos/190574/pexels-photo-190574.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
       features: ['Revolutionary Design', 'Precision Engineering', 'Titanium Components', 'Dry Sump Lubrication'],
       gradient: 'from-red-600 to-orange-600'
     }
