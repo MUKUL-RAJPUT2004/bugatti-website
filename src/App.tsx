@@ -4,7 +4,7 @@ import HeroSection from './components/HeroSection';
 import CompanyHistory from './components/CompanyHistory';
 import ModelsSection from './components/ModelsSection';
 import EngineSection from './components/EngineSection';
-import EvolutionSection from './components/EvolutionSection';
+import PerformanceStats from './components/PerformanceStats';
 import ColorCustomizer from './components/ColorCustomizer';
 import Footer from './components/Footer';
 
@@ -16,7 +16,7 @@ function App() {
       <CompanyHistory />
       <ModelsSection />
       <EngineSection />
-      <EvolutionSection />
+      <PerformanceStats />
       <ColorCustomizer />
       <Footer />
     </div>

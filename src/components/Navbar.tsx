@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { FaHome, FaCar, FaCog, FaHistory, FaPalette } from 'react-icons/fa';
+import { FaHome, FaCar, FaCog, FaHistory, FaPalette, FaChartLine } from 'react-icons/fa';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 
 const Navbar = () => {
@@ -13,7 +13,7 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      const sections = ['home', 'history', 'models', 'engines', 'evolution', 'customizer'];
+      const sections = ['home', 'history', 'models', 'engines', 'performance', 'customizer'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -39,7 +39,7 @@ const Navbar = () => {
     { id: 'history', label: 'Heritage', icon: FaHistory },
     { id: 'models', label: 'Models', icon: FaCar },
     { id: 'engines', label: 'Engineering', icon: FaCog },
-    { id: 'evolution', label: 'Evolution', icon: FaHistory },
+    { id: 'performance', label: 'Performance', icon: FaChartLine },
     { id: 'customizer', label: 'Customize', icon: FaPalette }
   ];
 
