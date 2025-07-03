@@ -18,7 +18,7 @@ export const carModels: CarModel[] = [
     price: '$3.26M',
     acceleration: '2.4s',
     description: 'The ultimate expression of automotive excellence, combining unmatched performance with luxurious craftsmanship.',
-    image: 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
+    image: 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   },
   {
     id: 'chiron-sport',
@@ -28,7 +28,7 @@ export const carModels: CarModel[] = [
     price: '$3.65M',
     acceleration: '2.3s',
     description: 'Enhanced agility and precision for the most demanding driving experiences.',
-    image: 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
+    image: 'https://images.pexels.com/photos/3802508/pexels-photo-3802508.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   },
   {
     id: 'chiron-super-sport',
@@ -38,7 +38,7 @@ export const carModels: CarModel[] = [
     price: '$3.9M',
     acceleration: '2.4s',
     description: 'The fastest production Bugatti ever created, pushing the boundaries of speed.',
-    image: 'https://images.pexels.com/photos/3802508/pexels-photo-3802508.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
+    image: 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   },
   {
     id: 'la-voiture-noire',

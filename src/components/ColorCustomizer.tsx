@@ -15,7 +15,8 @@ const ColorCustomizer = () => {
       carColors: {
         primary: '#1e40af',
         secondary: '#1e3a8a',
-        accent: '#3b82f6'
+        accent: '#3b82f6',
+        metallic: '#60a5fa'
       }
     },
     { 
@@ -26,7 +27,8 @@ const ColorCustomizer = () => {
       carColors: {
         primary: '#dc2626',
         secondary: '#991b1b',
-        accent: '#ef4444'
+        accent: '#ef4444',
+        metallic: '#f87171'
       }
     },
     { 
@@ -37,7 +39,8 @@ const ColorCustomizer = () => {
       carColors: {
         primary: '#111827',
         secondary: '#000000',
-        accent: '#374151'
+        accent: '#374151',
+        metallic: '#6b7280'
       }
     },
     { 
@@ -48,7 +51,8 @@ const ColorCustomizer = () => {
       carColors: {
         primary: '#f8fafc',
         secondary: '#e2e8f0',
-        accent: '#ffffff'
+        accent: '#ffffff',
+        metallic: '#f1f5f9'
       }
     },
     { 
@@ -59,7 +63,8 @@ const ColorCustomizer = () => {
       carColors: {
         primary: '#6b7280',
         secondary: '#4b5563',
-        accent: '#9ca3af'
+        accent: '#9ca3af',
+        metallic: '#d1d5db'
       }
     },
     { 
@@ -70,7 +75,8 @@ const ColorCustomizer = () => {
       carColors: {
         primary: '#d97706',
         secondary: '#b45309',
-        accent: '#f59e0b'
+        accent: '#f59e0b',
+        metallic: '#fbbf24'
       }
     }
   ];
@@ -102,53 +108,124 @@ const ColorCustomizer = () => {
   const generateCarSVG = () => {
     const colors = selectedColorData?.carColors;
     return (
-      <svg viewBox="0 0 400 200" className="w-full h-full">
+      <svg viewBox="0 0 500 250" className="w-full h-full drop-shadow-2xl">
         <defs>
-          <linearGradient id="carGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="carBodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor={colors?.primary} />
-            <stop offset="50%" stopColor={colors?.secondary} />
+            <stop offset="30%" stopColor={colors?.metallic} />
+            <stop offset="70%" stopColor={colors?.secondary} />
+            <stop offset="100%" stopColor={colors?.primary} />
+          </linearGradient>
+          <linearGradient id="carAccentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor={colors?.accent} />
+            <stop offset="50%" stopColor={colors?.metallic} />
             <stop offset="100%" stopColor={colors?.accent} />
           </linearGradient>
-          <filter id="shadow">
-            <feDropShadow dx="2" dy="4" stdDeviation="3" floodOpacity="0.3"/>
+          <radialGradient id="wheelGradient" cx="50%" cy="30%">
+            <stop offset="0%" stopColor="#4a5568" />
+            <stop offset="70%" stopColor="#2d3748" />
+            <stop offset="100%" stopColor="#1a202c" />
+          </radialGradient>
+          <filter id="carShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="3" dy="8" stdDeviation="6" floodOpacity="0.4" floodColor="#000000"/>
+          </filter>
+          <filter id="metallic" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+            <feSpecularLighting result="specOut" in="blur" specularConstant="1.5" specularExponent="20" lightingColor="white">
+              <fePointLight x="-50" y="-50" z="200"/>
+            </feSpecularLighting>
+            <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
+            <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
           </filter>
         </defs>
         
-        {/* Car Body */}
-        <path
-          d="M50 120 L80 80 L120 70 L280 70 L320 80 L350 120 L350 140 L320 150 L80 150 L50 140 Z"
-          fill="url(#carGradient)"
-          filter="url(#shadow)"
-        />
+        {/* Car Shadow */}
+        <ellipse cx="250" cy="220" rx="180" ry="15" fill="rgba(0,0,0,0.3)" />
         
-        {/* Windshield */}
+        {/* Main Car Body */}
         <path
-          d="M90 80 L110 75 L290 75 L310 80 L300 90 L100 90 Z"
-          fill="rgba(200,220,255,0.3)"
+          d="M80 150 L120 100 L150 85 L350 85 L380 100 L420 150 L420 180 L380 190 L120 190 L80 180 Z"
+          fill="url(#carBodyGradient)"
+          filter="url(#carShadow)"
           stroke={colors?.accent}
           strokeWidth="1"
         />
         
-        {/* Wheels */}
-        <circle cx="100" cy="140" r="20" fill="#2d3748" stroke={colors?.accent} strokeWidth="2"/>
-        <circle cx="300" cy="140" r="20" fill="#2d3748" stroke={colors?.accent} strokeWidth="2"/>
-        <circle cx="100" cy="140" r="12" fill={colors?.secondary}/>
-        <circle cx="300" cy="140" r="12" fill={colors?.secondary}/>
+        {/* Car Roof */}
+        <path
+          d="M130 100 L150 90 L350 90 L370 100 L360 110 L140 110 Z"
+          fill="url(#carBodyGradient)"
+          opacity="0.9"
+        />
+        
+        {/* Windshield */}
+        <path
+          d="M140 100 L160 88 L340 88 L360 100 L350 105 L150 105 Z"
+          fill="rgba(200,220,255,0.4)"
+          stroke={colors?.accent}
+          strokeWidth="1"
+        />
+        
+        {/* Side Windows */}
+        <path
+          d="M150 105 L170 95 L230 95 L240 105 Z"
+          fill="rgba(150,180,255,0.3)"
+          stroke={colors?.metallic}
+          strokeWidth="0.5"
+        />
+        <path
+          d="M260 105 L270 95 L330 95 L350 105 Z"
+          fill="rgba(150,180,255,0.3)"
+          stroke={colors?.metallic}
+          strokeWidth="0.5"
+        />
+        
+        {/* Front Wheels */}
+        <circle cx="130" cy="175" r="25" fill="url(#wheelGradient)" stroke={colors?.accent} strokeWidth="2"/>
+        <circle cx="130" cy="175" r="18" fill={colors?.secondary} stroke={colors?.metallic} strokeWidth="1"/>
+        <circle cx="130" cy="175" r="10" fill={colors?.accent}/>
+        
+        {/* Rear Wheels */}
+        <circle cx="370" cy="175" r="25" fill="url(#wheelGradient)" stroke={colors?.accent} strokeWidth="2"/>
+        <circle cx="370" cy="175" r="18" fill={colors?.secondary} stroke={colors?.metallic} strokeWidth="1"/>
+        <circle cx="370" cy="175" r="10" fill={colors?.accent}/>
         
         {/* Headlights */}
-        <ellipse cx="340" cy="100" rx="8" ry="12" fill="#ffffff" opacity="0.9"/>
-        <ellipse cx="340" cy="100" rx="4" ry="8" fill={colors?.accent}/>
+        <ellipse cx="410" cy="130" rx="12" ry="18" fill="#ffffff" opacity="0.9"/>
+        <ellipse cx="410" cy="130" rx="8" ry="14" fill={colors?.accent} opacity="0.8"/>
+        <ellipse cx="410" cy="125" rx="4" ry="6" fill="#ffffff"/>
         
-        {/* Side Details */}
+        {/* Taillights */}
+        <ellipse cx="90" cy="140" rx="8" ry="12" fill="#ff4444" opacity="0.9"/>
+        <ellipse cx="90" cy="155" rx="8" ry="12" fill="#ff4444" opacity="0.9"/>
+        
+        {/* Side Accent Lines */}
         <path
-          d="M80 110 L320 110 L315 120 L85 120 Z"
-          fill={colors?.accent}
-          opacity="0.7"
+          d="M120 140 L380 140"
+          stroke="url(#carAccentGradient)"
+          strokeWidth="3"
+          opacity="0.8"
+        />
+        <path
+          d="M130 155 L370 155"
+          stroke="url(#carAccentGradient)"
+          strokeWidth="2"
+          opacity="0.6"
         />
         
         {/* Door Lines */}
-        <line x1="150" y1="80" x2="150" y2="140" stroke={colors?.secondary} strokeWidth="1" opacity="0.5"/>
-        <line x1="250" y1="80" x2="250" y2="140" stroke={colors?.secondary} strokeWidth="1" opacity="0.5"/>
+        <line x1="200" y1="100" x2="200" y2="175" stroke={colors?.secondary} strokeWidth="1" opacity="0.4"/>
+        <line x1="300" y1="100" x2="300" y2="175" stroke={colors?.secondary} strokeWidth="1" opacity="0.4"/>
+        
+        {/* Front Grille */}
+        <rect x="400" y="120" width="15" height="30" fill={colors?.secondary} rx="2"/>
+        <rect x="402" y="125" width="11" height="5" fill={colors?.accent} opacity="0.7"/>
+        <rect x="402" y="135" width="11" height="5" fill={colors?.accent} opacity="0.7"/>
+        <rect x="402" y="145" width="11" height="5" fill={colors?.accent} opacity="0.7"/>
+        
+        {/* Bugatti Logo Area */}
+        <circle cx="410" cy="135" r="6" fill={colors?.accent} stroke="#ffffff" strokeWidth="1"/>
+        <text x="410" y="138" textAnchor="middle" fontSize="6" fill="#ffffff" fontWeight="bold">B</text>
       </svg>
     );
   };
@@ -230,57 +307,67 @@ const ColorCustomizer = () => {
                 }}
               />
 
-              {/* Car Visualization */}
+              {/* Car Visualization - Much Larger */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`${selectedModel}-${selectedColor}`}
-                  className="relative h-96 rounded-xl overflow-hidden bg-gradient-to-br from-gray-800/50 to-gray-900/50"
+                  className="relative h-96 rounded-xl overflow-hidden bg-gradient-to-br from-gray-800/30 to-gray-900/30 flex items-center justify-center"
                   initial={{ scale: 0.8, opacity: 0, rotateY: 90 }}
                   animate={{ scale: 1, opacity: 1, rotateY: 0 }}
                   exit={{ scale: 0.8, opacity: 0, rotateY: -90 }}
                   transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
                 >
-                  {/* SVG Car with Dynamic Colors */}
-                  <div className="absolute inset-0 flex items-center justify-center p-8">
-                    <motion.div
-                      className="w-full h-full"
-                      animate={{
-                        scale: [1, 1.05, 1],
-                        rotateY: [0, 5, 0]
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    >
-                      {generateCarSVG()}
-                    </motion.div>
-                  </div>
+                  {/* Large SVG Car with Dynamic Colors */}
+                  <motion.div
+                    className="w-full h-full max-w-lg max-h-80 p-4"
+                    animate={{
+                      scale: [1, 1.02, 1],
+                      rotateY: [0, 2, 0]
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    {generateCarSVG()}
+                  </motion.div>
                   
-                  {/* Sparkle Effect */}
-                  {Array.from({ length: 8 }).map((_, i) => (
+                  {/* Enhanced Sparkle Effect */}
+                  {Array.from({ length: 12 }).map((_, i) => (
                     <motion.div
                       key={i}
-                      className="absolute w-2 h-2 bg-white rounded-full"
+                      className="absolute w-3 h-3 bg-white rounded-full"
                       style={{
-                        left: `${20 + Math.random() * 60}%`,
-                        top: `${20 + Math.random() * 60}%`
+                        left: `${15 + Math.random() * 70}%`,
+                        top: `${15 + Math.random() * 70}%`
                       }}
                       animate={{
-                        scale: [0, 1, 0],
-                        opacity: [0, 1, 0]
+                        scale: [0, 1.5, 0],
+                        opacity: [0, 1, 0],
+                        rotate: [0, 180, 360]
                       }}
                       transition={{
-                        duration: 2,
+                        duration: 3,
                         repeat: Infinity,
-                        delay: i * 0.3,
+                        delay: i * 0.25,
                         ease: "easeInOut"
                       }}
                     />
                   ))}
                   
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                  {/* Color Reflection Effect */}
+                  <motion.div
+                    className={`absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-${selectedColor === 'white' ? 'gray' : selectedColor}-500/20 rounded-xl`}
+                    animate={{
+                      opacity: [0.1, 0.3, 0.1]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
                 </motion.div>
               </AnimatePresence>
               
@@ -296,10 +383,10 @@ const ColorCustomizer = () => {
                         <FaStar className="mr-2 text-yellow-400" />
                         {selectedModelData?.name}
                       </h4>
-                      <p className="text-gray-300">{selectedColorData?.name}</p>
+                      <p className="text-gray-300 font-medium">{selectedColorData?.name}</p>
                     </div>
                     <motion.div
-                      className={`w-12 h-12 rounded-full bg-gradient-to-r ${selectedColorData?.gradient} border-2 border-white/30`}
+                      className={`w-12 h-12 rounded-full bg-gradient-to-r ${selectedColorData?.gradient} border-2 border-white/30 shadow-lg`}
                       animate={{
                         rotate: [0, 360],
                         scale: [1, 1.1, 1]
@@ -429,7 +516,7 @@ const ColorCustomizer = () => {
                   >
                     <div className="flex items-center space-x-3">
                       <motion.div 
-                        className={`w-8 h-8 rounded-full bg-gradient-to-br ${color.gradient} border-2 border-gray-400/30`}
+                        className={`w-10 h-10 rounded-full bg-gradient-to-br ${color.gradient} border-2 border-gray-400/30 shadow-lg`}
                         animate={selectedColor === color.id ? {
                           scale: [1, 1.2, 1],
                           rotate: [0, 360]

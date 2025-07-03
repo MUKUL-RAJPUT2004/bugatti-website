@@ -11,6 +11,28 @@ const ModelsSection = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(107,114,128,0.1)_0%,transparent_50%)]"></div>
       </div>
 
+      {/* Floating Elements */}
+      {Array.from({ length: 15 }).map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 bg-gray-500/20 rounded-full"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`
+          }}
+          animate={{
+            y: [0, -100, 0],
+            opacity: [0.2, 0.8, 0.2],
+            scale: [1, 1.5, 1]
+          }}
+          transition={{
+            duration: 8 + i,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      ))}
+
       <div className="relative z-10 max-w-8xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
