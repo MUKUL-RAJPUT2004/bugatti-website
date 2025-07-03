@@ -25,7 +25,7 @@ const HeroSection = () => {
       {/* Hero Background with High Quality Bugatti Image */}
       <div className="absolute inset-0">
         <img 
-          src="https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+          src="https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
           alt="Bugatti Chiron"
           className="w-full h-full object-cover"
         />
